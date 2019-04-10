@@ -2,6 +2,7 @@ node {
     currentBuild.result = "SUCCESS"
     try {
         stage 'Clone Project'
+            updateGitlabCommitStatus name: 'build', state: 'pending'
             git 'https://github.com/Dkra/cra-jenkins'
             sh """
                 ls -al
@@ -34,7 +35,7 @@ node {
                 npm run build
             """
 
-        stage 'Notify Slack'
+        stage 'Notify Slack & GitLab'
           def attachments = [
             [
                 text: 'Success! This is from Rogers Mac!',
@@ -42,6 +43,8 @@ node {
             ]
           ]
           slackSend(attachments: attachments)
+          updateGitlabCommitStatus name: 'build', state: 'success'
+
     } catch (err) {
       def attachments = [
         [
