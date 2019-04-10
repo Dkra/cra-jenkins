@@ -3,7 +3,7 @@ node {
     try {
         stage 'Clone Project'
             updateGitlabCommitStatus name: 'build', state: 'pending'
-            git 'https://github.com/Dkra/cra-jenkins'
+            git 'https://gitlab.com/Dkra/cra-jenkins-dsl-example.git'
             sh """
                 ls -al
             """

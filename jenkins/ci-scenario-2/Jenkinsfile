@@ -2,7 +2,7 @@ node {
     currentBuild.result = "SUCCESS"
     try {
         stage 'Clone Project'
-            git 'https://github.com/Dkra/cra-jenkins'
+            git 'https://gitlab.com/Dkra/cra-jenkins-dsl-example.git'
             sh """
                 ls -al
             """
