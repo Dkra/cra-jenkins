@@ -1,4 +1,5 @@
 def jobName = "cra-jenkins-ci"
+
 try {
   pipelineJob(jobName) {
     definition {
