@@ -1,8 +1,6 @@
 node {
     currentBuild.result = "SUCCESS"
     try {
-        stage 'Failed the job on purpose!'
-            error("Failed the job test Gitlab & Slack notification!")
 
         stage 'Clone Project'
             updateGitlabCommitStatus name: 'build', state: 'pending'
@@ -10,6 +8,10 @@ node {
             sh """
                 ls -al
             """
+
+
+        // stage 'Failed the job on purpose!'
+        //     error("Failed the job test Gitlab & Slack notification!")
 
         stage 'Install NodeJS'
             sh """

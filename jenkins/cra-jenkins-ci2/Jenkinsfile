@@ -1,11 +1,17 @@
 node {
     currentBuild.result = "SUCCESS"
     try {
+
         stage 'Clone Project'
+            updateGitlabCommitStatus name: 'build', state: 'pending'
             git 'https://gitlab.com/Dkra/cra-jenkins-dsl-example.git'
             sh """
                 ls -al
             """
+
+
+        // stage 'Failed the job on purpose!'
+        //     error("Failed the job test Gitlab & Slack notification!")
 
         stage 'Install NodeJS'
             sh """
@@ -34,19 +40,28 @@ node {
                 npm run build
             """
 
-        stage 'Notify Slack'
+        stage 'Notify Slack & GitLab'
           def attachments = [
             [
-                text: 'I find your lack of faith disturbing!',
-                fallback: 'Hey, Vader seems to be mad at you.',
+                text: 'Success! This is from Rogers Mac!',
                 color: '#5afa60'
             ]
           ]
-
           slackSend(attachments: attachments)
-    } catch (err) {
+          updateGitlabCommitStatus name: 'build', state: 'success'
 
-        throw err
+    } catch (err) {
+      def attachments = [
+        [
+            text: 'Failed! This is from Rogers Mac!',
+            color: 'rgb(250, 40, 71)'
+        ]
+      ]
+
+      slackSend(attachments: attachments)
+      updateGitlabCommitStatus name: 'build', state: 'failed'
+
+      throw err
 
     } finally {
        sh """
