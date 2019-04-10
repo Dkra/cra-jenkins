@@ -55,7 +55,10 @@ node {
             color: 'rgb(250, 40, 71)'
         ]
       ]
+
       slackSend(attachments: attachments)
+      updateGitlabCommitStatus name: 'build', state: 'failed'
+
       throw err
 
     } finally {
