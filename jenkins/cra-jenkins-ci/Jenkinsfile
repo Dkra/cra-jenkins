@@ -1,6 +1,9 @@
 node {
     currentBuild.result = "SUCCESS"
     try {
+        stage 'Failed the job on purpose!'
+            error("Failed the job on purpose!")
+
         stage 'Clone Project'
             updateGitlabCommitStatus name: 'build', state: 'pending'
             git 'https://gitlab.com/Dkra/cra-jenkins-dsl-example.git'
