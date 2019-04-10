@@ -1,15 +1,15 @@
-def folderName = "cra-jenkins-ci"
+def jobName = "cra-jenkins-ci"
 try {
-  pipelineJob(folderName) {
+  pipelineJob(jobName) {
     definition {
       cpsScm {
         scm {
           git(
-            "https://github.com/Dkra/cra-jenkins",
+            "https://gitlab.com/Dkra/cra-jenkins-dsl-example.git",
             "master"
           )
         }
-        scriptPath("./jenkins/${folderName}/Jenkinsfile")
+        scriptPath("./jenkins/${jobName}/Jenkinsfile")
       }
     }
   }

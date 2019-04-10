@@ -5,7 +5,7 @@ try {
       cpsScm {
         scm {
           git(
-            "https://github.com/Dkra/cra-jenkins",
+            "https://gitlab.com/Dkra/cra-jenkins-dsl-example.git",
             "master"
           )
         }
