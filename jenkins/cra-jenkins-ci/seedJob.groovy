@@ -13,6 +13,11 @@ try {
         scriptPath("./jenkins/${jobName}/Jenkinsfile")
       }
     }
+
+    triggers {
+      cron('*/5 * * * *')
+    }
+
   }
 } catch (err) {
   throw err
