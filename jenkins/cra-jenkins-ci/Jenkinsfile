@@ -18,7 +18,7 @@ node {
     try {
 
         stage 'Clone Project'
-            updateGitlabCommitStatus name: 'build', state: 'pending'
+            updateGitlabCommitStatus name: 'jenkins-build', state: 'pending'
             git 'https://gitlab.com/Dkra/cra-jenkins-dsl-example.git'
             sh """
                 ls -al
@@ -61,7 +61,7 @@ node {
             ]
           ]
           slackSend(attachments: attachments)
-          updateGitlabCommitStatus name: 'build', state: 'success'
+          updateGitlabCommitStatus name: 'jenkins-build', state: 'success'
 
     } catch (err) {
       def attachments = [
@@ -72,7 +72,7 @@ node {
       ]
 
       slackSend(attachments: attachments)
-      updateGitlabCommitStatus name: 'build', state: 'failed'
+      updateGitlabCommitStatus name: 'jenkins-build', state: 'failed'
 
       throw err
 
