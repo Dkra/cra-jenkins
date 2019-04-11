@@ -39,13 +39,13 @@ node {
                 npm install
             """
 
-        /*
+
         stage 'Test'
             sh """
                 export PATH=`pwd`/node-v8.11.3-linux-x64/bin:$PATH
-                npm run test
+                npm run test:report
             """
-        */
+        
 
         stage 'Build'
             sh """
