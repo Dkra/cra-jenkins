@@ -1,0 +1,33 @@
+node {
+    currentBuild.result = "SUCCESS"
+    try {
+      stage 'mock CD with success status'
+          sh """
+              echo 'Success CD job build! (This is from Rogers Mac)'
+          """
+
+      stage 'Notify Slack CD successful'
+        def attachments = [
+          [
+              text: 'Success CD job build! (This is from Rogers Mac)',
+              color: '#5afa60'
+          ]
+        ]
+      slackSend(attachments: attachments)
+
+    } catch (err) {
+      def attachments = [
+        [
+            text: 'Failed! This is from Rogers Mac!',
+            color: 'rgb(250, 40, 71)'
+        ]
+      ]
+
+      slackSend(attachments: attachments)
+
+      throw err
+
+    } finally {
+      
+    }
+}
