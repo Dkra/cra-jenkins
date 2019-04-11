@@ -1,0 +1,21 @@
+{
+	"projects": [
+		{
+			"displayName": "testReport",
+			"setupTestFrameworkScriptFile": "tests.config.js",
+			"testPathIgnorePatterns": [
+				"/node_modules/",
+				"/docs/",
+				"/dist/",
+				"/coverage/",
+				"/snapshots/"
+			],
+			"moduleNameMapper": {
+				".(css|less|scss|png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico|svg|yaml|yml)$":
+					"identity-obj-proxy"
+			},
+			"collectCoverageFrom": [".{js,jsx}", "!.test.{js,jsx}"],
+			"coverageThreshold": { "global": { "lines": 50 } }
+		}
+	]
+}
