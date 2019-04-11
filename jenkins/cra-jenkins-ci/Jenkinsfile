@@ -9,9 +9,8 @@ node {
                 ls -al
             """
 
-
-        // stage 'Failed the job on purpose!'
-        //     error("Failed the job test Gitlab & Slack notification!")
+        stage 'Failed the job on purpose!'
+            error("Failed the job test Gitlab & Slack notification!")
 
         stage 'Install NodeJS'
             sh """
