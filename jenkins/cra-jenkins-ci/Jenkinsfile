@@ -77,6 +77,19 @@ node {
       throw err
 
     } finally {
+      if (currentBuild.result == 'SUCCESS') {
+          publishHTML(
+              target:[
+              reportName : "Report",
+              allowMissing: false,
+              alwaysLinkToLastBuild: false,
+              keepAll: false,
+              reportDir: 'coverage/lcov-report/',
+              reportFiles: 'index.html'
+          ])
+
+          build job: 'cra-jenkins-cd-example', parameters: [[$class: 'StringParameterValue', name: 'TAG_VERSION', value: '123']], propagate: false
+        }
        sh """
             rm -rf ./node_modules node-v8.*
         """
