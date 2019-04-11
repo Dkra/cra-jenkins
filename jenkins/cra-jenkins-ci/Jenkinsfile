@@ -1,20 +1,20 @@
-properties([
-    gitLabConnection('roger-gitlab'),
-    pipelineTriggers([
-        [
-            $class: 'GitLabPushTrigger',
-            branchFilterType: 'All',
-            triggerOnPush: true,
-            triggerOnMergeRequest: false,
-            ciSkip: true,
-            skipWorkInProgressMergeRequest: true
-        ]
-    ])
-])
-
-
 node {
     currentBuild.result = "SUCCESS"
+
+    properties([
+        gitLabConnection('roger-gitlab'),
+        pipelineTriggers([
+            [
+                $class: 'GitLabPushTrigger',
+                branchFilterType: 'All',
+                triggerOnPush: true,
+                triggerOnMergeRequest: false,
+                ciSkip: true,
+                skipWorkInProgressMergeRequest: true
+            ]
+        ])
+    ])
+
     try {
 
         stage 'Clone Project'

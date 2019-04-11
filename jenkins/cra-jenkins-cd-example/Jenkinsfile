@@ -3,6 +3,7 @@ node {
     try {
       stage 'mock CD with success status'
           sh """
+              echo "TAG_VERSION: ${TAG_VERSION}"
               echo 'Success CD job build! (This is from Rogers Mac)'
           """
 
@@ -28,6 +29,6 @@ node {
       throw err
 
     } finally {
-      
+
     }
 }
