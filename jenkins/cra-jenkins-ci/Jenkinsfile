@@ -45,7 +45,7 @@ node {
                 export PATH=`pwd`/node-v8.11.3-linux-x64/bin:$PATH
                 npm run test:report
             """
-        
+
 
         stage 'Build'
             sh """
@@ -64,6 +64,7 @@ node {
           updateGitlabCommitStatus name: 'jenkins-build', state: 'success'
 
     } catch (err) {
+      currentBuild.result = "Failed"
       def attachments = [
         [
             text: 'Failed! This is from Rogers Mac!',
@@ -88,7 +89,7 @@ node {
               reportFiles: 'index.html'
           ])
 
-          build job: 'cra-jenkins-cd-example', parameters: [[$class: 'StringParameterValue', name: 'TAG_VERSION', value: '123']], propagate: false
+          build job: 'cra-jenkins-cd', parameters: [[$class: 'StringParameterValue', name: 'TAG_VERSION', value: '123']], propagate: false
         }
        sh """
             rm -rf ./node_modules node-v8.*
