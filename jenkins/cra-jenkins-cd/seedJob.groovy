@@ -1,4 +1,4 @@
-def jobName = "cra-jenkins-cd-example"
+def jobName = "cra-jenkins-cd"
 
 try {
   pipelineJob(jobName) {
