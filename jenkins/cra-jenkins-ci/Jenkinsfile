@@ -3,6 +3,7 @@ node {
 
     properties([
         gitLabConnection('roger-gitlab'),
+        parameters([string(defaultValue: 'v1', description: '', name: 'TAG_VERSION', trim: false)]),
         pipelineTriggers([
             [
                 $class: 'GitLabPushTrigger',
