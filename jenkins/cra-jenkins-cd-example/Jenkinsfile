@@ -1,5 +1,13 @@
 node {
     currentBuild.result = "SUCCESS"
+    properties(
+      [
+        parameters(
+          [string(defaultValue: 'v1', name: 'TAG_VERSION')
+        )
+      ]
+    )
+
     try {
       stage 'mock CD with success status'
           sh """
