@@ -1,12 +1,9 @@
 node {
     currentBuild.result = "SUCCESS"
-    properties(
-      [
-        parameters(
-          [string(defaultValue: 'v1', name: 'TAG_VERSION')]
-        )
-      ]
-    )
+    properties([
+      gitLabConnection('roger-gitlab'),
+      parameters([string(defaultValue: 'v1', description: '', name: 'TAG_VERSION', trim: false)])
+    ])
 
     try {
       stage 'mock CD with success status'
