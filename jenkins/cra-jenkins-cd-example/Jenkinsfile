@@ -3,7 +3,7 @@ node {
     properties(
       [
         parameters(
-          [string(defaultValue: 'v1', name: 'TAG_VERSION')
+          [string(defaultValue: 'v1', name: 'TAG_VERSION')]
         )
       ]
     )
